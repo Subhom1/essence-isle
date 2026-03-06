@@ -1,0 +1,40 @@
+@import "tailwindcss";
+
+@theme {
+  --color-lavender: #f2ecfe;
+  --color-deep-plum: #2d1b4d;
+  --color-gold: #C6A86B;
+  --color-mist: #a78bfa;
+
+  --font-essence: var(--font-essence), sans-serif;
+  --font-isle: var(--font-isle-lux), serif;
+  --font-sans: var(--font-isle-lux), sans-serif;
+}
+
+:root {
+  --background: #f2ecfe;
+  --foreground: #2d1b4d;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+.font-serif {
+  font-family: var(--font-isle-lux);
+}
+
+.luxury-gradient {
+  background: linear-gradient(to bottom, rgba(242, 236, 254, 0.8), rgba(242, 236, 254, 1));
+}
+
+.gold-glow:hover {
+  text-shadow: 0 0 10px rgba(198, 168, 107, 0.5);
+}
