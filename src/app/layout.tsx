@@ -18,6 +18,9 @@ export const metadata: Metadata = {
   other: {
     "p:domain_verify": "bed9382e26d50c302c3420a4872dcf0c",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
