@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import localFont from "next/font/local";
 import "./globals.css";
+import CustomCursor from "@/components/CustomCursor";
 
 const essenceFont = localFont({
   src: "../../public/fonts/ESSENCEISLE-Montserrat.otf",
@@ -35,6 +36,7 @@ export default function RootLayout({
       <body
         className={`${essenceFont.variable} ${isleLuxFont.variable} font-sans antialiased`}
       >
+        <CustomCursor />
         {children}
         <Analytics />
         <SpeedInsights />

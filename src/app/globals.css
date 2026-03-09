@@ -1,19 +1,92 @@
 @import "tailwindcss";
 
 @theme {
-  --color-lavender: #f2ecfe;
-  --color-deep-plum: #2d1b4d;
-  --color-gold: #C6A86B;
-  --color-mist: #a78bfa;
+  --color-lavender: #F6F3FA;
+  --color-deep-plum: #2D1B4D;
+  --color-plum-hover: #5A3E8B;
+  --color-gold: #D4AF37;
+  --color-text-dark: #1B122E;
 
   --font-essence: var(--font-essence), sans-serif;
   --font-isle: var(--font-isle-lux), serif;
   --font-sans: var(--font-isle-lux), sans-serif;
+  --font-serif: var(--font-isle-lux), serif;
 }
 
 :root {
-  --background: #f2ecfe;
-  --foreground: #2d1b4d;
+  --background: #F6F3FA;
+  --foreground: #1B122E;
+  --deep-plum: #2D1B4D;
+  --plum-hover: #5A3E8B;
+  --luxury-gold: #D4AF37;
+  --white: #FFFFFF;
+}
+
+/* Brand Mappings */
+.bg-brand-deep {
+  background-color: var(--deep-plum);
+}
+
+.text-brand-gold {
+  color: var(--luxury-gold);
+}
+
+.border-brand-gold {
+  border-color: var(--luxury-gold);
+}
+
+.rounded-custom {
+  border-radius: 4px;
+}
+
+.split-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .split-container {
+    flex-direction: row;
+  }
+}
+
+.split-panel {
+  flex: 1;
+  overflow: hidden;
+  transition: flex 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  min-height: 50vh;
+}
+
+@media (min-width: 768px) {
+  .split-panel {
+    min-height: auto;
+  }
+
+  .split-panel:hover {
+    flex: 1.5;
+  }
+}
+
+.content-overlay {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  background: linear-gradient(to top, rgba(29, 18, 46, 0.9) 0%, rgba(29, 18, 46, 0.4) 50%, rgba(29, 18, 46, 0) 100%);
+  z-index: 20;
+}
+
+.split-panel:hover .content-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bg-image {
+  transition: transform 1s ease, opacity 0.5s ease;
+}
+
+.split-panel:hover .bg-image {
+  transform: scale(1.05);
 }
 
 body {
@@ -21,20 +94,107 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
+  cursor: none;
+  /* Hide default cursor */
 }
 
+/* Custom Cursor Styles */
+#custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--luxury-gold);
+  /* Lighter shade */
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+#custom-cursor .cursor-text {
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: white;
+  opacity: 0;
+  font-weight: 700;
+}
+
+/* Interactive States */
+.cursor-hover-active #custom-cursor {
+  width: 70px;
+  height: 70px;
+  background-color: rgba(212, 175, 55, 0.1);
+  /* Soft Gold Fill */
+  border-color: var(--luxury-gold);
+}
+
+.cursor-hover-active #custom-cursor .cursor-text {
+  opacity: 0;
+}
+
+/* Typography & Interactive Elements */
 h1,
 h2,
 h3,
 h4,
 .font-serif {
   font-family: var(--font-isle-lux);
+  transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
+
+/* Responsive Logo Utilities */
+.logo-part-left {
+  min-width: 100px;
+}
+
+.logo-part-right {
+  min-width: 100px;
+}
+
+@media (min-width: 768px) {
+
+  .logo-part-left,
+  .logo-part-right {
+    min-width: 140px;
+  }
+}
+
+.luxury-heading-hover:hover {
+  color: var(--luxury-gold);
+  /* letter-spacing: 0.05em; */
+}
+
+.btn-luxury {
+  background-color: var(--deep-plum);
+  color: white;
+  padding: 1rem 2.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.75rem;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-luxury:hover {
+  background-color: var(--plum-hover);
+  /* transform: scale(1.05); */
 }
 
 .luxury-gradient {
-  background: linear-gradient(to bottom, rgba(242, 236, 254, 0.8), rgba(242, 236, 254, 1));
+  background: linear-gradient(to bottom, rgba(246, 243, 250, 0.8), rgba(246, 243, 250, 1));
 }
 
-.gold-glow:hover {
-  text-shadow: 0 0 10px rgba(198, 168, 107, 0.5);
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base styles for GSAP animations */
+.gsap-reveal {
+  opacity: 0;
 }
