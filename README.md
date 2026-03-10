@@ -6,7 +6,7 @@ Essence Isle is a premium landing page for a niche perfume house, designed with 
 
 - **Cinematic Hero Experience**: A full-screen, high-definition visual introduction to the brand's philosophy.
 - **Ultra-Minimalist Navbar**: A clean, airy navigation system that prioritizes brand identity and core collection links.
-- **Signature Collection**: A curated showcase of flagship fragrances (Mountain Breeze, Rose de Jour, Crystaline Ember) with smooth hover interactions and detailed aura descriptions.
+- **Signature Collection**: A curated showcase of flagship fragrances (Mountain Breeze, Rose de Jour, Velvet Nuit) with smooth hover interactions and detailed aura descriptions.
 - **AI Scent Discovery**: A refined, interactive section where users can discover their personalized fragrance profile through memory descriptions and image uploads.
 - **Custom Branding**: Bespoke typography using local "Montserrat" and "Lux Classic" fonts with precise letter-spacing.
 - **Responsive & Accessible**: Fully optimized for all devices, from mobile to desktop.

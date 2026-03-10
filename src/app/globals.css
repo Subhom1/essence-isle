@@ -13,6 +13,14 @@
   --font-serif: var(--font-isle-lux), serif;
 }
 
+/* Global Resets - Specificity over !important */
+#hero *,
+#finder *,
+nav * {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
 :root {
   --background: #F6F3FA;
   --foreground: #1B122E;
@@ -20,6 +28,17 @@
   --plum-hover: #5A3E8B;
   --luxury-gold: #D4AF37;
   --white: #FFFFFF;
+}
+
+/* Base interactive resets */
+button,
+input,
+textarea,
+a {
+  -webkit-appearance: none;
+  appearance: none;
+  border: none;
+  background: none;
 }
 
 /* Brand Mappings */
@@ -39,6 +58,7 @@
   border-radius: 4px;
 }
 
+/* ─── Hero Split Panel Layout ──────────────────────────────────── */
 .split-container {
   height: 100vh;
   display: flex;
@@ -53,9 +73,15 @@
 
 .split-panel {
   flex: 1;
+  position: relative;
+  /* CRITICAL: children use absolute positioning */
   overflow: hidden;
-  transition: flex 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 50vh;
+  transition: flex 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease;
+  min-height: 33.33vh;
+  min-width: 0;
+  /* CRITICAL: allows panel to shrink below text width */
+  background-color: #1a102e;
+  /* Dark fallback so images always show */
 }
 
 @media (min-width: 768px) {
@@ -63,16 +89,38 @@
     min-height: auto;
   }
 
-  .split-panel:hover {
-    flex: 1.5;
+  /* Active panel expands */
+  .split-container .split-panel:hover {
+    flex: 10;
+    z-index: 40;
+    /* Below Navbar (100), above siblings (10) */
+    opacity: 1;
+  }
+
+  /* Inactive panels shrink but remain clearly visible */
+  .split-container:hover .split-panel:not(:hover) {
+    flex: 5;
+    opacity: 0.85;
+    z-index: 10;
+  }
+
+  /* Hide text content in inactive panels; keep h3 bottom-titles visible */
+  .split-container:hover .split-panel:not(:hover) h2,
+  .split-container:hover .split-panel:not(:hover) p,
+  .split-container:hover .split-panel:not(:hover) .content-overlay,
+  .split-container:hover .split-panel:not(:hover) button {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
   }
 }
 
+/* ─── Content Overlay (reveals on hover) ───────────────────────── */
 .content-overlay {
   opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  background: linear-gradient(to top, rgba(29, 18, 46, 0.9) 0%, rgba(29, 18, 46, 0.4) 50%, rgba(29, 18, 46, 0) 100%);
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  background: linear-gradient(to top, rgba(29, 18, 46, 0.95) 0%, rgba(29, 18, 46, 0.7) 50%, rgba(29, 18, 46, 0) 100%);
   z-index: 20;
 }
 
@@ -81,64 +129,114 @@
   transform: translateY(0);
 }
 
+/* ─── Mobile: titles always visible, clutter hidden ─────────────── */
+@media (max-width: 767px) {
+
+  /* Hide secondary content on mobile (not needed for navigation) */
+  .split-panel:not(:hover):not(:active) .content-overlay p,
+  .split-panel:not(:hover):not(:active) .content-overlay div {
+    display: none;
+  }
+
+  /* Always show titles on mobile (no hover available) */
+  .content-overlay {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Keep inactive panels clearly visible on mobile */
+  .split-container:hover .split-panel:not(:hover) {
+    opacity: 0.85;
+  }
+}
+
+/* ─── Background Image ──────────────────────────────────────────── */
 .bg-image {
   transition: transform 1s ease, opacity 0.5s ease;
+  filter: brightness(0.6) contrast(1.1);
+  /* Mobile: apply to show images clearly */
+}
+
+@media (min-width: 768px) {
+  .bg-image {
+    filter: none;
+    /* Desktop: let the overlay handle darkening */
+  }
 }
 
 .split-panel:hover .bg-image {
   transform: scale(1.05);
 }
 
+/* ─── Body ──────────────────────────────────────────────────────── */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   overflow-x: hidden;
   cursor: none;
-  /* Hide default cursor */
+  isolation: isolate;
 }
 
-/* Custom Cursor Styles */
+/* ─── Custom Cursor ─────────────────────────────────────────────── */
 #custom-cursor {
   position: fixed;
   top: 0;
   left: 0;
-  width: 80px;
-  height: 80px;
+  width: 24px;
+  height: 24px;
   border: 1px solid var(--luxury-gold);
-  /* Lighter shade */
   border-radius: 50%;
   pointer-events: none;
   z-index: 9999;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: width 0.3s ease, height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+  transition: width 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    height 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    background-color 0.4s ease,
+    border-color 0.4s ease;
+  mix-blend-mode: difference;
+}
+
+#custom-cursor::after {
+  content: '';
+  width: 4px;
+  height: 4px;
+  background-color: var(--luxury-gold);
+  border-radius: 50%;
+  position: absolute;
 }
 
 #custom-cursor .cursor-text {
-  font-size: 8px;
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.2em;
   color: white;
   opacity: 0;
   font-weight: 700;
+  position: absolute;
+  white-space: nowrap;
 }
 
-/* Interactive States */
+/* Cursor hover state */
 .cursor-hover-active #custom-cursor {
-  width: 70px;
-  height: 70px;
-  background-color: rgba(212, 175, 55, 0.1);
-  /* Soft Gold Fill */
-  border-color: var(--luxury-gold);
+  width: 80px;
+  height: 80px;
+  background-color: rgba(212, 175, 55, 0.15);
+  border: 1px solid rgba(212, 175, 55, 0.8);
+  mix-blend-mode: normal;
 }
 
-.cursor-hover-active #custom-cursor .cursor-text {
+.cursor-hover-active #custom-cursor::after {
   opacity: 0;
 }
 
-/* Typography & Interactive Elements */
+.cursor-hover-active #custom-cursor .cursor-text {
+  opacity: 1;
+}
+
+/* ─── Typography ─────────────────────────────────────────────────── */
 h1,
 h2,
 h3,
@@ -148,7 +246,7 @@ h4,
   transition: color 0.3s ease, letter-spacing 0.3s ease;
 }
 
-/* Responsive Logo Utilities */
+/* ─── Logo Utilities ─────────────────────────────────────────────── */
 .logo-part-left {
   min-width: 100px;
 }
@@ -165,9 +263,9 @@ h4,
   }
 }
 
+/* ─── Utility Classes ────────────────────────────────────────────── */
 .luxury-heading-hover:hover {
   color: var(--luxury-gold);
-  /* letter-spacing: 0.05em; */
 }
 
 .btn-luxury {
@@ -182,19 +280,18 @@ h4,
 
 .btn-luxury:hover {
   background-color: var(--plum-hover);
-  /* transform: scale(1.05); */
 }
 
 .luxury-gradient {
   background: linear-gradient(to bottom, rgba(246, 243, 250, 0.8), rgba(246, 243, 250, 1));
 }
 
-/* Smooth Scrolling */
+/* ─── Smooth Scrolling ───────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
 }
 
-/* Base styles for GSAP animations */
+/* ─── GSAP Animations ────────────────────────────────────────────── */
 .gsap-reveal {
   opacity: 0;
 }

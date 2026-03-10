@@ -16,6 +16,7 @@ export default function CustomCursor() {
             gsap.to(cursor, {
                 x: e.clientX,
                 y: e.clientY,
+                opacity: 1,
                 duration: 0.5,
                 ease: "power2.out",
                 xPercent: -50,
@@ -50,7 +51,11 @@ export default function CustomCursor() {
     }, []);
 
     return (
-        <div id="custom-cursor" ref={cursorRef}>
+        <div
+            id="custom-cursor"
+            ref={cursorRef}
+            style={{ opacity: 0 }}
+        >
             <span className="cursor-text" ref={cursorTextRef}></span>
         </div>
     );

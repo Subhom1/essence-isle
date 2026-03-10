@@ -27,7 +27,7 @@ export default function Navbar() {
     }, [isMenuOpen]);
 
     const navLinks = [
-        { name: "Collection", href: "#collection" },
+        // { name: "Collection", href: "#collection" },
         { name: "Scent Finder", href: "#finder" },
         { name: "Philosophy", href: "#philosophy" },
     ];
@@ -37,7 +37,7 @@ export default function Navbar() {
             <motion.nav
                 initial={{ y: -100 }}
                 animate={{ y: 0 }}
-                className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled || isMenuOpen ? "bg-lavender/95 backdrop-blur-lg py-4 shadow-md" : "bg-gradient-to-b from-black/20 to-transparent py-6"
+                className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled || isMenuOpen ? "bg-lavender/95 backdrop-blur-lg py-4 shadow-md" : "bg-gradient-to-b from-black/20 to-transparent py-6"
                     }`}
             >
                 <div className={`container mx-auto px-6 flex items-center justify-between transition-colors duration-500 ${scrolled || isMenuOpen ? "text-deep-plum" : "text-white"}`}>

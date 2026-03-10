@@ -22,8 +22,8 @@ const fragrances = [
         description: "The timeless grace of a morning rose, soft, velvety, and undeniably radiant."
     },
     {
-        name: "CRYSTALINE EMBER",
-        image: "/images/crystaline.png",
+        name: "Velvet Nuit",
+        image: "/images/velvet.png",
         aura: "Luminous & Warm",
         description: "A date night special with hints of musk and warmth."
     }
