@@ -60,32 +60,50 @@ a {
 
 /* ─── Hero Split Panel Layout ──────────────────────────────────── */
 .split-container {
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
 
 @media (min-width: 768px) {
   .split-container {
+    height: 100vh;
     flex-direction: row;
   }
 }
 
 .split-panel {
-  flex: 1;
   position: relative;
-  /* CRITICAL: children use absolute positioning */
   overflow: hidden;
   transition: flex 0.8s cubic-bezier(0.23, 1, 0.32, 1), opacity 0.5s ease;
-  min-height: 33.33vh;
   min-width: 0;
-  /* CRITICAL: allows panel to shrink below text width */
-  background-color: #1a102e;
-  /* Dark fallback so images always show */
+  background-color: #000;
+  /* Cinematic black fallback */
+  /* Dark fallback */
+}
+
+@media (max-width: 767px) {
+  .split-panel {
+    flex: 0 0 33.333%;
+    height: 33.333%;
+    min-height: 33.333%;
+  }
+
+  .panel-divider {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+    height: 1px;
+    opacity: 0;
+    background-color: rgba(255, 255, 255, 0.15);
+  }
 }
 
 @media (min-width: 768px) {
   .split-panel {
+    flex: 1;
     min-height: auto;
   }
 
@@ -93,7 +111,6 @@ a {
   .split-container .split-panel:hover {
     flex: 10;
     z-index: 40;
-    /* Below Navbar (100), above siblings (10) */
     opacity: 1;
   }
 
@@ -104,7 +121,7 @@ a {
     z-index: 10;
   }
 
-  /* Hide text content in inactive panels; keep h3 bottom-titles visible */
+  /* Hide text content in inactive panels */
   .split-container:hover .split-panel:not(:hover) h2,
   .split-container:hover .split-panel:not(:hover) p,
   .split-container:hover .split-panel:not(:hover) .content-overlay,
@@ -120,8 +137,31 @@ a {
   opacity: 0;
   transform: translateY(10px);
   transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  background: linear-gradient(to top, rgba(29, 18, 46, 0.95) 0%, rgba(29, 18, 46, 0.7) 50%, rgba(29, 18, 46, 0) 100%);
   z-index: 20;
+  /* Removed default purple background to prevent flash on load */
+  background: none;
+}
+
+/* Per-panel colour overlays */
+.overlay-blue {
+  background: linear-gradient(to top,
+      rgba(14, 60, 110, 0.92) 0%,
+      rgba(20, 80, 140, 0.65) 50%,
+      rgba(30, 90, 160, 0) 100%);
+}
+
+.overlay-pink {
+  background: linear-gradient(to top,
+      rgba(140, 40, 80, 0.90) 0%,
+      rgba(170, 60, 100, 0.62) 50%,
+      rgba(200, 80, 120, 0) 100%);
+}
+
+.overlay-red {
+  background: linear-gradient(to top,
+      rgba(120, 20, 30, 0.92) 0%,
+      rgba(160, 30, 50, 0.65) 50%,
+      rgba(190, 40, 60, 0) 100%);
 }
 
 .split-panel:hover .content-overlay {
@@ -132,9 +172,8 @@ a {
 /* ─── Mobile: titles always visible, clutter hidden ─────────────── */
 @media (max-width: 767px) {
 
-  /* Hide secondary content on mobile (not needed for navigation) */
-  .split-panel:not(:hover):not(:active) .content-overlay p,
-  .split-panel:not(:hover):not(:active) .content-overlay div {
+  /* Avoid flash by matching neutral state */
+  .split-panel:not(:hover):not(:active) .content-overlay p:not(.sub-tag) {
     display: none;
   }
 
@@ -159,8 +198,7 @@ a {
 
 @media (min-width: 768px) {
   .bg-image {
-    filter: none;
-    /* Desktop: let the overlay handle darkening */
+    filter: none
   }
 }
 

@@ -8,8 +8,9 @@ export default function CustomCursor() {
     const cursorTextRef = useRef<HTMLSpanElement>(null);
 
     useEffect(() => {
-        const cursor = cursorRef.current;
+        if (window.innerWidth < 768) return;
 
+        const cursor = cursorRef.current;
         if (!cursor) return;
 
         const moveCursor = (e: MouseEvent) => {
@@ -49,6 +50,9 @@ export default function CustomCursor() {
             window.removeEventListener("mouseover", handleHover);
         };
     }, []);
+
+    // Don't render on mobile - prevents unwanted layout or touch issues
+    if (typeof window !== "undefined" && window.innerWidth < 768) return null;
 
     return (
         <div
