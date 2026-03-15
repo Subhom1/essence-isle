@@ -13,6 +13,14 @@
   --font-serif: var(--font-isle-lux), serif;
 }
 
+@media (max-width: 767px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    /* Essential for smooth snap transitions */
+  }
+}
+
 /* Global Resets - Specificity over !important */
 #hero *,
 #finder *,
@@ -60,18 +68,30 @@ a {
 
 /* ─── Hero Split Panel Layout ──────────────────────────────────── */
 .split-container {
-  height: 100dvh;
+  height: auto;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  overflow: visible;
+  /* Prevent scroll trapping */
 }
 
 @media (min-width: 768px) {
   .split-container {
     height: 100vh;
     flex-direction: row;
+    overflow: hidden;
   }
 }
+
+/* Scroll snap utilities (fallback) */
+.snap-start {
+  scroll-snap-align: start;
+}
+
+.snap-always {
+  scroll-snap-stop: always;
+}
+
 
 .split-panel {
   position: relative;
@@ -85,9 +105,12 @@ a {
 
 @media (max-width: 767px) {
   .split-panel {
-    flex: 0 0 33.333%;
-    height: 33.333%;
-    min-height: 33.333%;
+    flex: 0 0 100dvh;
+    height: 100dvh;
+    min-height: 100dvh;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    scroll-margin-top: 0;
   }
 
   .panel-divider {
@@ -155,6 +178,13 @@ a {
       rgba(140, 40, 80, 0.90) 0%,
       rgba(170, 60, 100, 0.62) 50%,
       rgba(200, 80, 120, 0) 100%);
+}
+
+.overlay-amber {
+  background: linear-gradient(to top,
+      rgba(150, 60, 20, 0.92) 0%,
+      rgba(180, 80, 30, 0.65) 50%,
+      rgba(200, 100, 40, 0) 100%);
 }
 
 .overlay-red {

@@ -11,7 +11,9 @@ export default function Navbar() {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 50);
+            const isMobile = window.innerWidth < 768;
+            const threshold = isMobile ? window.innerHeight * 3.8 : 50;
+            setScrolled(window.scrollY > threshold);
         };
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);

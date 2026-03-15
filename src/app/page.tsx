@@ -10,7 +10,7 @@ export default function Home() {
 
       <Hero />
 
-      <section className="py-24 bg-lavender">
+      <section className="py-24 bg-lavender snap-start">
         <div className="container mx-auto px-6 text-center">
           <div className="w-[1px] h-24 bg-gradient-to-b from-gold to-transparent mx-auto mb-12" />
           <h2 className="text-3xl md:text-4xl font-serif max-w-2xl mx-auto italic text-deep-plum/90 leading-relaxed">
@@ -22,10 +22,12 @@ export default function Home() {
 
       {/* <FeaturedFragrances /> */}
 
-      <AIScentFinder />
+      <div className="snap-start">
+        <AIScentFinder />
+      </div>
 
       {/* Philosophy Section Preview */}
-      <section id="philosophy" className="py-32 bg-lavender border-t border-deep-plum/5">
+      <section id="philosophy" className="py-32 bg-lavender border-t border-deep-plum/5 snap-start">
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-20 items-center">
           <div>
             <span className="text-gold uppercase tracking-[0.3em] text-[10px] mb-4 block">Our Philosophy</span>
@@ -42,7 +44,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="py-20 border-t border-deep-plum/5 bg-lavender text-deep-plum/40">
+      <footer className="py-20 border-t border-deep-plum/5 bg-lavender text-deep-plum/40 snap-start">
         <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12">
           <div className="md:col-span-2">
             <h3 className="text-xl font-serif text-deep-plum mb-6 tracking-widest uppercase">Essence Isle</h3>

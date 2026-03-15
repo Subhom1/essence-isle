@@ -71,8 +71,8 @@ export default function Hero() {
                         { y: 0, opacity: 1, stagger: 0.14, duration: 0.85, ease: "power3.out", delay: 0.4 }
                     );
                 } else {
-                    // Subsequent panels: reveal on scroll
-                    const startPos = i === 1 ? "top 80%" : "top 90%";
+                    // Subsequent panels: reveal on scroll (sync with snap)
+                    const startPos = "top 70%";
                     const tl = gsap.timeline({
                         scrollTrigger: {
                             trigger: panel,
@@ -120,7 +120,7 @@ export default function Hero() {
     return (
         <section
             ref={containerRef}
-            className="w-full flex split-container overflow-hidden bg-black"
+            className="w-full flex split-container bg-black"
             id="hero"
         >
             {/* Panel 1: Mountain Breeze */}
@@ -134,13 +134,13 @@ export default function Hero() {
                         priority
                     />
                 </div>
-                <div className="content-overlay overlay-blue absolute inset-0 z-10 flex flex-col justify-start px-6 md:px-20 text-white pt-[14vh] md:pt-0 md:justify-center">
+                <div className="content-overlay overlay-blue absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-20 text-white md:pt-0">
                     <span className="label-tag text-brand-gold uppercase tracking-[0.3em] text-[10px] md:text-sm mb-2 md:mb-4 block">
-                        Curated Essentials
+                        Ethereal Peaks
                     </span>
-                    <h2 className="font-serif text-2xl md:text-7xl mb-2 md:mb-4 whitespace-nowrap">Mountain Breeze</h2>
+                    <h2 className="font-serif text-2xl md:text-[clamp(2rem,5vw,4.5rem)] mb-2 md:mb-4 leading-none">Mountain Breeze</h2>
                     <p className="sub-tag text-sm md:text-xl font-serif italic text-white/90 mb-3 md:mb-6">
-                        A crisp, alpine-inspired scent
+                        Crisp. Clean. Invigorating.
                     </p>
                     <p className="hidden md:block text-white/70 max-w-sm text-base leading-relaxed mb-10 whitespace-normal">
                         Inspired by the pure essence of peak summits. A breath of fresh air
@@ -172,11 +172,11 @@ export default function Hero() {
                         priority
                     />
                 </div>
-                <div className="content-overlay overlay-pink absolute inset-0 z-10 flex flex-col justify-start md:justify-center px-6 md:px-20 text-white pt-[12vh] md:pt-0">
+                <div className="content-overlay overlay-pink absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-20 text-white md:pt-0">
                     <span className="label-tag text-brand-gold uppercase tracking-[0.3em] text-[10px] md:text-sm mb-2 md:mb-4 block">
                         La Collection Privée
                     </span>
-                    <h2 className="font-serif text-2xl md:text-7xl mb-2 md:mb-4 whitespace-nowrap">Rose De Jour</h2>
+                    <h2 className="font-serif text-2xl md:text-[clamp(2rem,5vw,4.5rem)] mb-2 md:mb-4 leading-none">Rose De Jour</h2>
                     <p className="sub-tag text-sm md:text-xl font-serif italic text-white/90 mb-3 md:mb-6">
                         A luminous modern rose fragrance
                     </p>
@@ -199,7 +199,46 @@ export default function Hero() {
                 <div className="panel-divider md:hidden h-px w-full origin-left" />
             </div>
 
-            {/* Panel 3: Velvet Nuit */}
+            {/* Panel 3: Crystalline Ember */}
+            <div className="split-panel group interactive">
+                <div className="absolute inset-0 z-0 bg-black">
+                    <Image
+                        src="/images/crystaline.png"
+                        alt="Crystalline Ember"
+                        fill
+                        className="bg-image object-cover opacity-80 group-hover:opacity-40"
+                        priority
+                    />
+                </div>
+                <div className="content-overlay overlay-amber absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-20 text-white md:pt-0">
+                    <span className="label-tag text-brand-gold uppercase tracking-[0.3em] text-[10px] md:text-sm mb-2 md:mb-4 block">
+                        Radiant Sophistication
+                    </span>
+                    <h2 className="font-serif text-2xl md:text-[clamp(2rem,5vw,4.5rem)] mb-2 md:mb-4 leading-none">Crystalline Ember</h2>
+                    <p className="sub-tag text-sm md:text-xl font-serif italic text-white/90 mb-3 md:mb-6">
+                        Radiant freshness meets glowing warmth
+                    </p>
+                    <p className="hidden md:block text-white/70 max-w-sm text-base leading-relaxed mb-10 whitespace-normal">
+                        A slow burning ember captured in crystal. Opens with sparkling spices
+                        and luminous citrus, settling into a deep, seductive base of amber
+                        and magnetic woody molecules.
+                    </p>
+                    <div>
+                        <button className="border border-brand-gold text-brand-gold px-6 md:px-8 py-3 md:py-4 rounded-custom tracking-widest uppercase text-xs hover:bg-brand-gold hover:text-brand-deep transition-all duration-300 interactive">
+                            Discover Ember
+                        </button>
+                    </div>
+                </div>
+                <div className="hidden md:block absolute bottom-8 left-8 z-10 group-hover:opacity-0 transition-opacity duration-300">
+                    <h3 className="font-serif text-white text-2xl tracking-widest uppercase">
+                        Crystalline Ember
+                    </h3>
+                </div>
+                {/* Gold divider - bottom of panel */}
+                <div className="panel-divider md:hidden h-px w-full origin-left" />
+            </div>
+
+            {/* Panel 4: Velvet Nuit */}
             <div className="split-panel group interactive">
                 <div className="absolute inset-0 z-0 bg-black">
                     <Image
@@ -210,13 +249,13 @@ export default function Hero() {
                         priority
                     />
                 </div>
-                <div className="content-overlay overlay-red absolute inset-0 z-10 flex flex-col justify-start md:justify-center px-6 md:px-20 text-white pt-[12vh] md:pt-0">
+                <div className="content-overlay overlay-red absolute inset-0 z-10 flex flex-col justify-center px-6 md:px-20 text-white md:pt-0">
                     <span className="label-tag text-brand-gold uppercase tracking-[0.3em] text-[10px] md:text-sm mb-2 md:mb-4 block">
                         Nocturnal Elegance
                     </span>
-                    <h2 className="font-serif text-2xl md:text-7xl mb-2 md:mb-4 whitespace-nowrap">Velvet Nuit</h2>
+                    <h2 className="font-serif text-2xl md:text-[clamp(2rem,5vw,4.5rem)] mb-2 md:mb-4 leading-none">Velvet Nuit</h2>
                     <p className="sub-tag text-sm md:text-xl font-serif italic text-white/90 mb-3 md:mb-6">
-                        Luminous &amp; Warm
+                        Luminous & Warm
                     </p>
                     <p className="hidden md:block text-white/70 max-w-sm text-base leading-relaxed mb-10 whitespace-normal">
                         A date night special with hints of musk and warmth. Inspired by the
