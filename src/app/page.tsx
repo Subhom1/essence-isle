@@ -85,7 +85,10 @@ export default function Home() {
       <footer className="bg-ink text-porcelain">
         <div className="site-shell grid gap-14 border-b border-white/10 py-16 md:grid-cols-[1.4fr_0.6fr_0.6fr] md:py-20">
           <div>
-            <p className="font-essence text-xl tracking-[0.2em]">ESSENCE ISLE</p>
+            <p className="inline-flex items-baseline gap-[0.35em] text-xl">
+              <span className="font-essence tracking-[0.2em]">ESSENCE</span>
+              <span className="font-isle tracking-[0.08em]">ISLE</span>
+            </p>
             <p className="mt-5 max-w-sm font-serif text-2xl italic leading-relaxed text-porcelain/72">
               Design your scent. Design your identity.
             </p>

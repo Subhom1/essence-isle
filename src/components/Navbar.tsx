@@ -51,8 +51,9 @@ export default function Navbar() {
           aria-label="Essence Isle home"
           className="relative whitespace-nowrap text-left text-ink md:absolute md:left-1/2 md:-translate-x-1/2 md:text-center"
         >
-          <span className="block font-essence text-[1.05rem] tracking-[0.22em] md:text-[1.22rem]">
-            ESSENCE ISLE
+          <span className="inline-flex items-baseline gap-[0.35em] text-[1.05rem] md:text-[1.22rem]">
+            <span className="font-essence tracking-[0.22em]">ESSENCE</span>
+            <span className="font-isle tracking-[0.08em]">ISLE</span>
           </span>
           <span className="nav-subtitle mt-0.5 hidden text-[0.5rem] uppercase tracking-[0.34em] text-ink/65 sm:block">
             The private scent atelier
