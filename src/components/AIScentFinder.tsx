@@ -1,60 +1,116 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Sparkles, Upload } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Check } from "lucide-react";
+import { FormEvent, useState } from "react";
+
+const chapters = [
+  {
+    id: "opening",
+    number: "01",
+    question: "How should your scent enter the room?",
+    options: ["Bright & sparkling", "Soft & inviting", "Cool & composed"],
+  },
+  {
+    id: "heart",
+    number: "02",
+    question: "What should live at its heart?",
+    options: ["A dewy floral", "A vivid memory", "A quiet contrast"],
+  },
+  {
+    id: "trail",
+    number: "03",
+    question: "How should it be remembered?",
+    options: ["Warm on skin", "Mysterious & woody", "Clean & weightless"],
+  },
+];
 
 export default function AIScentFinder() {
-    const [step, setStep] = useState(1);
+  const [choices, setChoices] = useState<Record<string, string>>({
+    opening: chapters[0].options[0],
+    heart: chapters[1].options[0],
+    trail: chapters[2].options[0],
+  });
+  const [submitted, setSubmitted] = useState(false);
 
-    return (
-        <section id="finder" className="py-24 bg-lavender relative overflow-hidden text-deep-plum">
-            {/* Decorative blurred glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-mist/10 blur-[120px] rounded-full pointer-events-none" />
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setSubmitted(true);
+  };
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mx-auto text-center border border-deep-plum/10 bg-white/60 backdrop-blur-2xl p-12 md:p-24 shadow-[0_20px_50px_rgba(45,27,77,0.05)] rounded-3xl">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8 }}
+  return (
+    <section id="atelier" className="section-pad overflow-hidden bg-porcelain">
+      <div className="site-shell">
+        <div className="grid gap-12 border-b border-ink/12 pb-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-end">
+          <div>
+            <p className="eyebrow mb-6">The Signature Atelier</p>
+            <h2 className="max-w-3xl font-serif text-5xl leading-[0.96] tracking-[-0.04em] text-ink md:text-7xl">
+              Design your scent.
+              <span className="block italic text-burgundy">Define your presence.</span>
+            </h2>
+          </div>
+          <div className="max-w-xl lg:justify-self-end">
+            <p className="text-base leading-8 text-ink/62">
+              Your memories, contrasts and instincts become the brief. We translate them into a
+              fragrance direction that belongs to you—and only you.
+            </p>
+            <p className="mt-5 font-serif text-xl italic text-ink">The smell lingers. The uniqueness is yours.</p>
+          </div>
+        </div>
+
+        <form onSubmit={handleSubmit} className="mt-12 grid gap-px bg-ink/12 lg:grid-cols-3">
+          {chapters.map((chapter) => (
+            <fieldset key={chapter.id} className="min-w-0 bg-porcelain p-7 md:p-10">
+              <legend className="sr-only">{chapter.question}</legend>
+              <span className="text-[0.58rem] tracking-[0.25em] text-gold">{chapter.number}</span>
+              <h3 className="mt-5 min-h-14 max-w-xs font-serif text-2xl leading-tight text-ink">{chapter.question}</h3>
+              <div className="mt-8 space-y-2">
+                {chapter.options.map((option) => {
+                  const active = choices[chapter.id] === option;
+                  return (
+                    <label
+                      key={option}
+                      className={`group flex cursor-pointer items-center justify-between border px-4 py-4 text-xs uppercase tracking-[0.14em] transition-colors ${
+                        active ? "border-burgundy bg-burgundy text-white" : "border-ink/12 text-ink/60 hover:border-ink/35"
+                      }`}
                     >
-                        <Sparkles className="w-8 h-8 text-gold mx-auto mb-6" />
-                        <h2 className="text-4xl md:text-5xl font-serif mb-6 italic">AI Scent Discovery</h2>
-                        <p className="text-deep-plum/60 text-sm md:text-base mb-12 max-w-2xl mx-auto leading-relaxed">
-                            Upload an image of your sanctuary, describe a memory, or tell us your lifestyle.
-                            Our AI will weave your essence into a personalized fragrance profile.
-                        </p>
+                      <input
+                        type="radio"
+                        name={chapter.id}
+                        value={option}
+                        checked={active}
+                        onChange={() => {
+                          setChoices((current) => ({ ...current, [chapter.id]: option }));
+                          setSubmitted(false);
+                        }}
+                        className="sr-only"
+                      />
+                      {option}
+                      {active && <Check size={14} strokeWidth={1.5} aria-hidden="true" />}
+                    </label>
+                  );
+                })}
+              </div>
+            </fieldset>
+          ))}
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-16">
-                            <motion.div
-                                whileHover={{ y: -5 }}
-                                className="p-12 border border-deep-plum/10 bg-white/50 hover:border-gold/30 hover:shadow-lg transition-all group flex flex-col items-center justify-center cursor-pointer rounded-2xl"
-                            >
-                                <div className="w-12 h-12 rounded-full bg-lavender flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
-                                    <Upload className="w-5 h-5 text-deep-plum/30 group-hover:text-gold" />
-                                </div>
-                                <span className="text-[10px] uppercase tracking-[0.3em] text-deep-plum/40 group-hover:text-deep-plum font-medium">Upload Scent Aura</span>
-                            </motion.div>
-
-                            <motion.div
-                                whileHover={{ y: -5 }}
-                                className="p-8 border border-deep-plum/10 bg-white/50 hover:border-gold/30 hover:shadow-lg transition-all flex flex-col gap-4 rounded-2xl relative"
-                            >
-                                <textarea
-                                    placeholder="Describe a memory or a mood..."
-                                    className="bg-transparent border-none text-sm text-deep-plum focus:ring-0 placeholder:text-deep-plum/20 resize-none h-full w-full min-h-[140px] leading-relaxed"
-                                />
-                                <div className="absolute bottom-4 right-4 text-[10px] uppercase tracking-widest text-deep-plum/20">Memory Lane</div>
-                            </motion.div>
-                        </div>
-
-                        <button className="px-12 py-4 bg-gold text-white hover:bg-deep-plum transition-all duration-500 uppercase tracking-[0.2em] text-xs font-bold shadow-md">
-                            Analyze My Aura
-                        </button>
-                    </motion.div>
-                </div>
+          <div className="bg-blush p-7 lg:col-span-3 md:p-10">
+            <div className="flex flex-col gap-7 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p className="text-[0.58rem] uppercase tracking-[0.22em] text-ink/45">Your first direction</p>
+                <p className="mt-3 font-serif text-2xl text-ink md:text-3xl">
+                  {choices.opening} <span className="text-gold">/</span> {choices.heart} <span className="text-gold">/</span> {choices.trail}
+                </p>
+              </div>
+              <button type="submit" className="button button-dark shrink-0">
+                Begin my scent brief <ArrowRight size={15} strokeWidth={1.4} />
+              </button>
             </div>
-        </section>
-    );
+            <p aria-live="polite" className={`mt-5 text-sm text-burgundy ${submitted ? "block" : "hidden"}`}>
+              Your direction is ready. Private scent consultations are opening soon.
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
 }

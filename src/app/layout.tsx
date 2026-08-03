@@ -15,8 +15,29 @@ const isleLuxFont = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Essence Isle | Discover Your Aura",
-  description: "A hidden realm where every fragrance reveals a different aura. Niche perfumes focusing on individuality, mystery, and presence.",
+  metadataBase: new URL("https://essenceisle.com"),
+  title: "Essence Isle | Skinglow Rosée",
+  description:
+    "Meet Skinglow Rosée, the first fragrance from Essence Isle—a glowing floral skin scent, and an invitation to design a scent that is entirely your own.",
+  openGraph: {
+    title: "Skinglow Rosée by Essence Isle",
+    description: "A glowing floral skin scent. Fresh, feminine, creamy and radiant.",
+    type: "website",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "Skinglow Rosée by Essence Isle",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Skinglow Rosée by Essence Isle",
+    description: "A glowing floral skin scent. Fresh, feminine, creamy and radiant.",
+    images: ["/og.png"],
+  },
   other: {
     "p:domain_verify": "bed9382e26d50c302c3420a4872dcf0c",
   },

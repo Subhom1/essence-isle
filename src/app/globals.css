@@ -1,40 +1,163 @@
 @import "tailwindcss";
 
 @theme {
-  --color-lavender: #f2ecfe;
-  --color-deep-plum: #2d1b4d;
-  --color-gold: #C6A86B;
-  --color-mist: #a78bfa;
+  --color-porcelain: #f5f0e9;
+  --color-soft-white: #fbf8f3;
+  --color-ink: #241719;
+  --color-burgundy: #6f2538;
+  --color-rose: #d7a6a3;
+  --color-blush: #e9d5cf;
+  --color-gold: #ad8757;
 
   --font-essence: var(--font-essence), sans-serif;
   --font-isle: var(--font-isle-lux), serif;
-  --font-sans: var(--font-isle-lux), sans-serif;
+  --font-sans: var(--font-essence), sans-serif;
+  --font-serif: var(--font-isle-lux), serif;
 }
 
 :root {
-  --background: #f2ecfe;
-  --foreground: #2d1b4d;
+  --background: #f5f0e9;
+  --foreground: #241719;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+  overflow-x: hidden;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
-  overflow-x: hidden;
+  font-family: var(--font-essence), sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
-h1,
-h2,
-h3,
-h4,
-.font-serif {
-  font-family: var(--font-isle-lux);
+button,
+a,
+input {
+  -webkit-tap-highlight-color: transparent;
 }
 
-.luxury-gradient {
-  background: linear-gradient(to bottom, rgba(242, 236, 254, 0.8), rgba(242, 236, 254, 1));
+button,
+a {
+  outline-offset: 4px;
 }
 
-.gold-glow:hover {
-  text-shadow: 0 0 10px rgba(198, 168, 107, 0.5);
+::selection {
+  background: #6f2538;
+  color: #fff;
+}
+
+.site-shell {
+  width: min(100% - 2rem, 88rem);
+  margin-inline: auto;
+}
+
+.section-pad {
+  padding-block: clamp(6rem, 10vw, 10rem);
+}
+
+.eyebrow {
+  color: #8d6a45;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.eyebrow-light {
+  color: #d7a6a3;
+}
+
+.nav-link {
+  color: rgba(36, 23, 25, 0.68);
+  font-size: 0.58rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: color 250ms ease;
+}
+
+.nav-link:hover {
+  color: #6f2538;
+}
+
+.button {
+  display: inline-flex;
+  min-height: 3.15rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px solid transparent;
+  padding: 0.95rem 1.55rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.19em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: background-color 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+
+.button-dark {
+  border-color: #241719;
+  background: #241719;
+  color: #fff;
+}
+
+.button-dark:hover {
+  border-color: #6f2538;
+  background: #6f2538;
+}
+
+.button-light {
+  border-color: rgba(36, 23, 25, 0.3);
+  color: #241719;
+}
+
+.button-light:hover {
+  border-color: #241719;
+  background: rgba(255, 255, 255, 0.36);
+}
+
+.footer-label {
+  color: #d7a6a3;
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 767px) {
+  .site-shell {
+    width: min(100% - 2rem, 88rem);
+  }
+
+  .hero-image {
+    object-position: 65% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
