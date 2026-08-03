@@ -31,10 +31,10 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b border-ink/10 backdrop-blur-xl transition-all duration-500 ${
         scrolled || open
-          ? "border-b border-ink/10 bg-porcelain/95 py-4 backdrop-blur-xl"
-          : "py-6"
+          ? "bg-porcelain/96 py-4"
+          : "bg-porcelain/78 py-5"
       }`}
     >
       <div className="site-shell flex items-center justify-between">
@@ -54,7 +54,7 @@ export default function Navbar() {
           <span className="block font-essence text-[1.05rem] tracking-[0.22em] md:text-[1.22rem]">
             ESSENCE ISLE
           </span>
-          <span className="mt-0.5 hidden text-[0.48rem] uppercase tracking-[0.42em] text-ink/50 sm:block">
+          <span className="nav-subtitle mt-0.5 hidden text-[0.5rem] uppercase tracking-[0.34em] text-ink/65 sm:block">
             The private scent atelier
           </span>
         </Link>
@@ -89,7 +89,7 @@ export default function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setOpen(false)}
-              className="flex items-baseline gap-5 border-b border-ink/10 pb-5 font-serif text-3xl text-ink"
+              className="mobile-nav-link flex items-baseline gap-5 border-b border-ink/10 pb-5 text-3xl text-ink"
             >
               <span className="text-[0.58rem] tracking-[0.25em] text-gold">0{index + 1}</span>
               {link.label}
