@@ -25,7 +25,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -57,6 +57,56 @@ body .font-essence {
 body .font-isle,
 body .font-serif {
   font-family: var(--font-isle-lux), serif !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  display: none;
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid rgba(36, 23, 25, 0.62);
+  border-radius: 999px;
+  background: rgba(245, 240, 233, 0.08);
+  box-shadow: 0 0 0 1px rgba(245, 240, 233, 0.14);
+  pointer-events: none;
+  transform-origin: center;
+  transition: border-color 220ms ease, background-color 220ms ease;
+}
+
+.custom-cursor::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.22rem;
+  height: 0.22rem;
+  border-radius: inherit;
+  background: #6f2538;
+  content: "";
+  transform: translate(-50%, -50%);
+}
+
+.custom-cursor[data-active="true"] {
+  border-color: rgba(111, 37, 56, 0.82);
+  background: rgba(111, 37, 56, 0.08);
+}
+
+@media (pointer: fine) {
+  .custom-cursor {
+    display: block;
+  }
+
+  html.custom-cursor-active,
+  html.custom-cursor-active a,
+  html.custom-cursor-active button,
+  html.custom-cursor-active input,
+  html.custom-cursor-active textarea,
+  html.custom-cursor-active select,
+  html.custom-cursor-active label {
+    cursor: none !important;
+  }
 }
 
 button,

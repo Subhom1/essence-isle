@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import SmoothExperience from "@/components/SmoothExperience";
 import localFont from "next/font/local";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const essenceFont = localFont({
@@ -52,10 +54,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en">
       <body
         className={`${essenceFont.variable} ${isleLuxFont.variable} font-sans antialiased`}
       >
+        <SmoothExperience />
         {children}
         <Analytics />
         <SpeedInsights />
