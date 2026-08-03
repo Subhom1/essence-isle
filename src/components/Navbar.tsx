@@ -38,16 +38,6 @@ export default function Navbar() {
       }`}
     >
       <div className="site-shell flex items-center justify-between">
-        <button
-          type="button"
-          aria-label={open ? "Close navigation" : "Open navigation"}
-          aria-expanded={open}
-          onClick={() => setOpen((value) => !value)}
-          className="flex h-10 w-10 items-center justify-center text-ink md:hidden"
-        >
-          {open ? <X size={19} strokeWidth={1.3} /> : <Menu size={20} strokeWidth={1.3} />}
-        </button>
-
         <nav aria-label="Primary navigation" className="hidden items-center gap-8 md:flex">
           {links.slice(0, 2).map((link) => (
             <Link key={link.href} href={link.href} className="nav-link">
@@ -59,7 +49,7 @@ export default function Navbar() {
         <Link
           href="#top"
           aria-label="Essence Isle home"
-          className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap text-center text-ink"
+          className="relative whitespace-nowrap text-left text-ink md:absolute md:left-1/2 md:-translate-x-1/2 md:text-center"
         >
           <span className="block font-essence text-[1.05rem] tracking-[0.22em] md:text-[1.22rem]">
             ESSENCE ISLE
@@ -77,9 +67,15 @@ export default function Navbar() {
           ))}
         </nav>
 
-        <Link href="#atelier" className="nav-link md:hidden">
-          Atelier
-        </Link>
+        <button
+          type="button"
+          aria-label={open ? "Close navigation" : "Open navigation"}
+          aria-expanded={open}
+          onClick={() => setOpen((value) => !value)}
+          className="flex h-10 w-10 items-center justify-center border border-ink/15 text-ink transition-colors hover:border-ink/40 md:hidden"
+        >
+          {open ? <X size={18} strokeWidth={1.3} /> : <Menu size={19} strokeWidth={1.3} />}
+        </button>
       </div>
 
       <div
