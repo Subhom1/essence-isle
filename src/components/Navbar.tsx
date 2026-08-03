@@ -31,14 +31,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 border-b border-ink/10 backdrop-blur-xl transition-all duration-500 ${
+      className={`fixed inset-x-0 top-0 z-50 border-b transition-[background-color,border-color,padding,box-shadow,backdrop-filter] duration-500 ${
         scrolled || open
-          ? "bg-porcelain/96 py-4"
-          : "bg-porcelain/78 py-5"
+          ? "border-ink/10 bg-porcelain/95 py-4 shadow-[0_8px_30px_rgba(36,23,25,0.04)] backdrop-blur-xl"
+          : "border-transparent bg-transparent py-5 shadow-none backdrop-blur-none"
       }`}
     >
       <div className="site-shell flex items-center justify-between">
-        <nav aria-label="Primary navigation" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Primary navigation" className="hidden items-center gap-8 lg:flex">
           {links.slice(0, 2).map((link) => (
             <Link key={link.href} href={link.href} className="nav-link">
               {link.label}
@@ -49,18 +49,18 @@ export default function Navbar() {
         <Link
           href="#top"
           aria-label="Essence Isle home"
-          className="relative whitespace-nowrap text-left text-ink md:absolute md:left-1/2 md:-translate-x-1/2 md:text-center"
+          className="relative whitespace-nowrap text-left text-ink lg:absolute lg:left-1/2 lg:-translate-x-1/2 lg:text-center"
         >
-          <span className="inline-flex items-baseline gap-[0.35em] text-[1.05rem] md:text-[1.22rem]">
+          <span className="inline-flex items-baseline gap-[0.35em] text-[1.05rem] lg:text-[1.22rem]">
             <span className="font-essence tracking-[0.22em]">ESSENCE</span>
             <span className="font-isle tracking-[0.08em]">ISLE</span>
           </span>
-          <span className="nav-subtitle mt-0.5 hidden text-[0.5rem] uppercase tracking-[0.34em] text-ink/65 sm:block">
+          <span className="nav-subtitle mt-0.5 hidden text-[0.5rem] uppercase tracking-[0.34em] text-ink/65 lg:block">
             The private scent atelier
           </span>
         </Link>
 
-        <nav aria-label="Secondary navigation" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Secondary navigation" className="hidden items-center gap-8 lg:flex">
           {links.slice(2).map((link) => (
             <Link key={link.href} href={link.href} className="nav-link">
               {link.label}
@@ -73,14 +73,14 @@ export default function Navbar() {
           aria-label={open ? "Close navigation" : "Open navigation"}
           aria-expanded={open}
           onClick={() => setOpen((value) => !value)}
-          className="flex h-10 w-10 items-center justify-center border border-ink/15 text-ink transition-colors hover:border-ink/40 md:hidden"
+          className="flex h-10 w-10 items-center justify-center border border-ink/20 bg-porcelain/35 text-ink transition-colors hover:border-ink/40 lg:hidden"
         >
           {open ? <X size={18} strokeWidth={1.3} /> : <Menu size={19} strokeWidth={1.3} />}
         </button>
       </div>
 
       <div
-        className={`absolute inset-x-0 top-full h-[calc(100vh-73px)] bg-porcelain transition-all duration-500 md:hidden ${
+        className={`absolute inset-x-0 top-full h-[calc(100vh-73px)] bg-porcelain transition-all duration-500 lg:hidden ${
           open ? "visible translate-y-0 opacity-100" : "invisible -translate-y-4 opacity-0"
         }`}
       >
