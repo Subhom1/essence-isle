@@ -223,7 +223,7 @@ export default function SignatureScentWheel() {
                   className="absolute inset-0"
                   role="radiogroup"
                   aria-label="Choose the scent signal that catches you first"
-                  style={{ "--wheel-radius": "clamp(7rem, 18.5vw, 13.4rem)" } as CSSProperties}
+                  style={{ "--wheel-radius": "clamp(6.8rem, 15.5vw, 11rem)" } as CSSProperties}
                 >
                   {scentFamilies.map((option) => {
                     const active = option.id === familyId;
@@ -236,7 +236,7 @@ export default function SignatureScentWheel() {
                         aria-checked={active}
                         aria-label={`${option.label}, ${option.family}`}
                         onClick={() => setFamilyId(option.id)}
-                        className={`absolute left-1/2 top-1/2 flex h-[5.8rem] w-[5.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-2 text-center transition duration-300 sm:h-[7.3rem] sm:w-[7.3rem] ${active ? "z-20 scale-110 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain/84 text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
+                        className={`absolute left-1/2 top-1/2 flex h-[5.8rem] w-[5.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-2 text-center transition duration-300 sm:h-[7.3rem] sm:w-[7.3rem] ${active ? "z-20 scale-110 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
                         style={{ transform: `translate(-50%, -50%) rotate(${option.angle}deg) translateY(calc(-1 * var(--wheel-radius))) rotate(${-option.angle}deg)` }}
                       >
                         <span className="mb-1 text-[0.48rem] uppercase tracking-[0.16em] opacity-55">{option.shortLabel}</span>
