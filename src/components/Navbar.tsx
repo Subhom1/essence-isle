@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 const links = [
   { href: "#rosee", label: "Skinglow Rosée" },
   { href: "#notes", label: "The notes" },
+  { href: "/scent-finder", label: "Scent finder" },
   { href: "#atelier", label: "Design your scent" },
   { href: "#philosophy", label: "Our philosophy" },
 ];
