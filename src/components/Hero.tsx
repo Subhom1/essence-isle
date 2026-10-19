@@ -38,7 +38,7 @@ export default function Hero() {
             <Link href="#rosee" className="button button-dark">
               Discover Rosée
             </Link>
-            <Link href="#atelier" className="button button-light">
+            <Link href="/scent-finder" className="button button-light">
               Design your scent
             </Link>
           </div>
