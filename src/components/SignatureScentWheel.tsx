@@ -152,6 +152,17 @@ function makeScentId(value: string) {
   return `EI-SIG-${String(hash).padStart(5, "0")}`;
 }
 
+function getWheelPosition(angle: number): CSSProperties {
+  const radians = (angle * Math.PI) / 180;
+  const orbit = 35;
+
+  return {
+    left: `${50 + orbit * Math.sin(radians)}%`,
+    top: `${50 - orbit * Math.cos(radians)}%`,
+    transform: "translate(-50%, -50%)",
+  };
+}
+
 export default function SignatureScentWheel() {
   const [step, setStep] = useState(0);
   const [familyId, setFamilyId] = useState<string | null>(null);
@@ -212,18 +223,18 @@ export default function SignatureScentWheel() {
           {step === 0 && (
             <div className="mt-12 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
               <div className="relative mx-auto aspect-square w-full max-w-[35rem] overflow-hidden rounded-full border border-ink/12 bg-[#efe3d5] p-5 sm:p-8">
+              <div className="absolute inset-4 rounded-full sm:inset-8">
                 <div
-                  className="pointer-events-none absolute inset-4 rounded-full opacity-70 sm:inset-8"
+                  className="pointer-events-none absolute inset-0 rounded-full opacity-70"
                   style={{ background: "conic-gradient(from -22.5deg, #dba45e 0deg 45deg, #b76e73 45deg 90deg, #7c9365 90deg 135deg, #83a9a2 135deg 180deg, #9a5c3d 180deg 225deg, #725e4c 225deg 270deg, #ae5f68 270deg 315deg, #594951 315deg 360deg)" }}
                   aria-hidden="true"
                 />
-                <div className="pointer-events-none absolute inset-5 rounded-full border border-white/45 sm:inset-9" aria-hidden="true" />
-                <div className="pointer-events-none absolute inset-[24%] rounded-full border border-ink/10 bg-porcelain/90 shadow-[0_16px_50px_rgba(36,23,25,0.1)] sm:inset-[27%]" aria-hidden="true" />
+                <div className="pointer-events-none absolute inset-1 rounded-full border border-white/45" aria-hidden="true" />
+                <div className="pointer-events-none absolute inset-[33%] rounded-full border border-ink/10 bg-porcelain shadow-[0_16px_50px_rgba(36,23,25,0.1)]" aria-hidden="true" />
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 z-10"
                   role="radiogroup"
                   aria-label="Choose the scent signal that catches you first"
-                  style={{ "--wheel-radius": "clamp(6.8rem, 15.5vw, 11rem)" } as CSSProperties}
                 >
                   {scentFamilies.map((option) => {
                     const active = option.id === familyId;
@@ -236,8 +247,8 @@ export default function SignatureScentWheel() {
                         aria-checked={active}
                         aria-label={`${option.label}, ${option.family}`}
                         onClick={() => setFamilyId(option.id)}
-                        className={`absolute left-1/2 top-1/2 flex h-[5.8rem] w-[5.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-2 text-center transition duration-300 sm:h-[7.3rem] sm:w-[7.3rem] ${active ? "z-20 scale-110 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
-                        style={{ transform: `translate(-50%, -50%) rotate(${option.angle}deg) translateY(calc(-1 * var(--wheel-radius))) rotate(${-option.angle}deg)` }}
+                        className={`absolute left-1/2 top-1/2 flex h-[5.8rem] w-[5.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-2 text-center transition duration-300 sm:h-[7.3rem] sm:w-[7.3rem] ${active ? "z-40 scale-110 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
+                        style={getWheelPosition(option.angle)}
                       >
                         <span className="mb-1 text-[0.48rem] uppercase tracking-[0.16em] opacity-55">{option.shortLabel}</span>
                         <span className="font-serif text-base leading-[0.95] sm:text-lg">{option.label}</span>
@@ -245,14 +256,15 @@ export default function SignatureScentWheel() {
                     );
                   })}
                 </div>
-                <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center p-16 text-center sm:p-24">
-                  <div>
+                <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center p-16 text-center sm:p-24">
+                  <div className="mx-auto max-w-[8rem]">
                     <Sparkles size={16} strokeWidth={1.2} className="mx-auto mb-3 text-gold" aria-hidden="true" />
                     <p className="text-[0.52rem] uppercase tracking-[0.24em] text-ink/48">Your first signal</p>
-                    <p className="mt-3 font-serif text-2xl leading-none text-ink sm:text-3xl">{family ? family.shortLabel : "Follow your pull"}</p>
-                    <p className="mx-auto mt-3 max-w-[10rem] text-[0.63rem] leading-5 text-ink/55">{family ? family.notes : "Tap a world of scent. There is no wrong answer."}</p>
+                    <p className="mt-3 font-serif text-[1.55rem] leading-[0.9] text-ink sm:text-2xl">{family ? family.shortLabel : "Follow your pull"}</p>
+                    <p className="mx-auto mt-3 max-w-[7rem] text-[0.58rem] leading-5 text-ink/55">{family ? family.notes : "Tap your first instinct."}</p>
                   </div>
                 </div>
+              </div>
               </div>
 
               <div className="max-w-xl">
