@@ -230,7 +230,7 @@ export default function SignatureScentWheel() {
                   aria-hidden="true"
                 />
                 <div className="pointer-events-none absolute inset-1 rounded-full border border-white/45" aria-hidden="true" />
-                <div className="pointer-events-none absolute inset-[33%] rounded-full border border-ink/10 bg-porcelain shadow-[0_16px_50px_rgba(36,23,25,0.1)]" aria-hidden="true" />
+                <div className="pointer-events-none absolute inset-[31%] rounded-full border border-ink/10 bg-porcelain shadow-[0_16px_50px_rgba(36,23,25,0.1)]" aria-hidden="true" />
                 <div
                   className="absolute inset-0 z-10"
                   role="radiogroup"
@@ -247,21 +247,21 @@ export default function SignatureScentWheel() {
                         aria-checked={active}
                         aria-label={`${option.label}, ${option.family}`}
                         onClick={() => setFamilyId(option.id)}
-                        className={`absolute left-1/2 top-1/2 flex h-[5.8rem] w-[5.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-2 text-center transition duration-300 sm:h-[7.3rem] sm:w-[7.3rem] ${active ? "z-40 scale-110 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
+                        className={`absolute left-1/2 top-1/2 flex h-[4.8rem] w-[4.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-2 text-center transition duration-300 sm:h-[6.1rem] sm:w-[6.1rem] ${active ? "z-40 scale-105 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
                         style={getWheelPosition(option.angle)}
                       >
-                        <span className="mb-1 text-[0.48rem] uppercase tracking-[0.16em] opacity-55">{option.shortLabel}</span>
-                        <span className="font-serif text-base leading-[0.95] sm:text-lg">{option.label}</span>
+                        <span className="mb-1 text-[0.4rem] uppercase tracking-[0.14em] opacity-55">{option.shortLabel}</span>
+                        <span className="font-serif text-[0.78rem] leading-[0.95] sm:text-base">{option.label}</span>
                       </button>
                     );
                   })}
                 </div>
-                <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center p-16 text-center sm:p-24">
-                  <div className="mx-auto max-w-[8rem]">
+                <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center p-12 text-center sm:p-20">
+                  <div className="mx-auto max-w-[10rem]">
                     <Sparkles size={16} strokeWidth={1.2} className="mx-auto mb-3 text-gold" aria-hidden="true" />
                     <p className="text-[0.52rem] uppercase tracking-[0.24em] text-ink/48">Your first signal</p>
-                    <p className="mt-3 font-serif text-[1.55rem] leading-[0.9] text-ink sm:text-2xl">{family ? family.shortLabel : "Follow your pull"}</p>
-                    <p className="mx-auto mt-3 max-w-[7rem] text-[0.58rem] leading-5 text-ink/55">{family ? family.notes : "Tap your first instinct."}</p>
+                    <p className="mt-3 font-serif text-[1.35rem] leading-[0.9] text-ink sm:text-[1.8rem]">{family ? family.shortLabel : "Follow your pull"}</p>
+                    <p className="mx-auto mt-3 max-w-[8rem] text-[0.56rem] leading-5 text-ink/55">{family ? family.notes : "Tap your first instinct."}</p>
                   </div>
                 </div>
               </div>
