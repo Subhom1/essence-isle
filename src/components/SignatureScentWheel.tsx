@@ -159,7 +159,6 @@ function getWheelPosition(angle: number): CSSProperties {
   return {
     left: `${50 + orbit * Math.sin(radians)}%`,
     top: `${50 - orbit * Math.cos(radians)}%`,
-    transform: "translate(-50%, -50%)",
   };
 }
 
@@ -223,7 +222,7 @@ export default function SignatureScentWheel() {
           {step === 0 && (
             <div className="mt-12 grid items-center gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
               <div className="relative mx-auto aspect-square w-full max-w-[35rem] overflow-hidden rounded-full border border-ink/12 bg-[#efe3d5] p-5 sm:p-8">
-              <div className="absolute inset-4 rounded-full sm:inset-8">
+              <div className="absolute inset-4 rounded-full [container-type:inline-size] sm:inset-8">
                 <div
                   className="pointer-events-none absolute inset-0 rounded-full opacity-70"
                   style={{ background: "conic-gradient(from -22.5deg, #dba45e 0deg 45deg, #b76e73 45deg 90deg, #7c9365 90deg 135deg, #83a9a2 135deg 180deg, #9a5c3d 180deg 225deg, #725e4c 225deg 270deg, #ae5f68 270deg 315deg, #594951 315deg 360deg)" }}
@@ -247,21 +246,21 @@ export default function SignatureScentWheel() {
                         aria-checked={active}
                         aria-label={`${option.label}, ${option.family}`}
                         onClick={() => setFamilyId(option.id)}
-                        className={`absolute left-1/2 top-1/2 flex h-[4.8rem] w-[4.8rem] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-2 text-center transition duration-300 sm:h-[6.1rem] sm:w-[6.1rem] ${active ? "z-40 scale-105 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
+                        className={`absolute flex h-[20%] w-[20%] -translate-x-1/2 -translate-y-1/2 flex-col items-center justify-center rounded-full border px-[1cqw] text-center transition duration-300 ${active ? "z-40 scale-105 border-burgundy bg-burgundy text-white shadow-[0_10px_30px_rgba(111,37,56,0.26)]" : "border-white/55 bg-porcelain text-ink hover:z-10 hover:scale-105 hover:border-burgundy/60"}`}
                         style={getWheelPosition(option.angle)}
                       >
-                        <span className="mb-1 text-[0.4rem] uppercase tracking-[0.14em] opacity-55">{option.shortLabel}</span>
-                        <span className="font-serif text-[0.78rem] leading-[0.95] sm:text-base">{option.label}</span>
+                        <span className="mb-[0.8cqw] text-[clamp(0.35rem,1.4cqw,0.44rem)] uppercase tracking-[0.14em] opacity-55">{option.shortLabel}</span>
+                        <span className="font-serif text-[clamp(0.625rem,3.25cqw,1rem)] leading-[0.95]">{option.label}</span>
                       </button>
                     );
                   })}
                 </div>
-                <div className="pointer-events-none absolute inset-0 z-30 flex items-center justify-center p-12 text-center sm:p-20">
-                  <div className="mx-auto max-w-[10rem]">
-                    <Sparkles size={16} strokeWidth={1.2} className="mx-auto mb-3 text-gold" aria-hidden="true" />
-                    <p className="text-[0.52rem] uppercase tracking-[0.24em] text-ink/48">Your first signal</p>
-                    <p className="mt-3 font-serif text-[1.35rem] leading-[0.9] text-ink sm:text-[1.8rem]">{family ? family.shortLabel : "Follow your pull"}</p>
-                    <p className="mx-auto mt-3 max-w-[8rem] text-[0.56rem] leading-5 text-ink/55">{family ? family.notes : "Tap your first instinct."}</p>
+                <div className="pointer-events-none absolute inset-[31%] z-30 flex items-center justify-center text-center">
+                  <div className="mx-auto w-[82%]">
+                    <Sparkles size={16} strokeWidth={1.2} className="mx-auto mb-[2cqw] h-[3.3cqw] w-[3.3cqw] text-gold" aria-hidden="true" />
+                    <p className="text-[1.7cqw] uppercase tracking-[0.2em] text-ink/48">Your first signal</p>
+                    <p className="mt-[2cqw] font-serif text-[5.8cqw] leading-[0.95] text-ink">{family ? family.shortLabel : "Follow your pull"}</p>
+                    <p className="mx-auto mt-[2cqw] text-[1.9cqw] leading-normal text-ink/55">{family ? family.notes : "Tap your first instinct."}</p>
                   </div>
                 </div>
               </div>
