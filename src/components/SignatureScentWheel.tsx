@@ -190,7 +190,7 @@ export default function SignatureScentWheel() {
         </Link>
       </div>
 
-      <section className="section-pad pt-10 md:pt-16">
+      <section className="pt-10 pb-[clamp(6rem,10vw,10rem)] md:pt-16">
         <div className="site-shell">
           <div className="max-w-4xl">
             <p className="eyebrow mb-6">The Signature Scent Finder</p>
